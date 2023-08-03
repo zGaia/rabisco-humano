@@ -1,10 +1,10 @@
+//  WHILE
 /*
 let x = 0
 
 while (x <= 10) {
     console.log(x);
-    x ++;
-    
+    x ++;    
 }
 */
 /*
@@ -78,3 +78,45 @@ while (i < lista.length) {
         console.log (media)
 
 */
+// DO-WHILLE
+
+/*
+let x = 1
+
+do {
+    console.log(x);
+    x ++;
+} while (x <= 10);
+*/  
+/*  
+num = 1
+let soma = 0;
+do {
+    soma += num;
+    num ++;
+} while (num <= 100);
+console.log(soma);
+*/
+/*
+let x = 1
+do  { if (x %2 == 0 ){
+    console.log(x)
+} 
+x ++
+}
+while (x <= 50) {   
+}
+*/
+/*
+let x = 10
+do {console.log(x);
+    x --;   
+}
+while (x >= 1) {
+}
+*/
+
+let x = 0
+ for (let x = 0; x <= 10; x ++ ){
+    console.log(x)
+ }
