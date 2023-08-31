@@ -204,3 +204,37 @@ function mesAno(mes,ano) {
 }
 let numero = mesAno(2,2000);
 consolelog(numero); */
+
+/* // Q12
+
+function saberHora(começo,fim){
+    let start = começo.split(':');
+    let end = fim.split(':');
+    if (start [0]>23 || end [0]> 23 || start [1]>59 || end [1] > 59){
+        return "Datas Incorretas";
+    }
+    start = start[0]*60 + Number(start[1]);
+    end = end[0]*60 + Number(end[1]);
+    if (start<end) {
+        return start-end;
+    }else{
+        end += 1440;
+        return  end - start
+    }
+}
+let hora1 = saberHora("23:00", "04:10")
+let hora2 = saberHora("20:00", "23:69")
+console.log(hora1);
+console.log(hora2);
+ */
+
+
+/* Q13 
+
+function fibonacci(n) {
+    if (n === 0 || n === 1) {
+        return n;
+    } else {
+        return fibonacci(n-1) + fibonacci(n-2);
+    }
+} */
