@@ -1,11 +1,13 @@
 const readline = require('readline-sync')
 
 const aluno1 = {
+    matriucla: 1,
     nome: "Filomeno",
     notas: [8, 7, 6],
 }
 
 const aluno2 = {
+    matricula: 2,
     nome: 'Azogado',
     notas: [10, 5.5, 6]
 }
@@ -15,9 +17,11 @@ console.log('=== CADASTRO DE ALUNOS ===')
 console.log('========== MENU ==========')
 console.log('0 - Sair do sistema')
 console.log('1 -Listar todos os alunos')
-console.log('==========================')
+console.log('============================')
 console.log('2 - Cadastrar um novo Aluno')
-console.log('3 - Matricula do Aluno');
+console.log('3 - Buscar Aluno');
+console.log('4 - Alterar um Aluno')
+console.log('============================')
 let loop = true
 
 
