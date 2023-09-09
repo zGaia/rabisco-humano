@@ -1,87 +1,122 @@
-const readline = require('readline-sync')
+const readline = require("readline-sync");
+const clear = require("clear");
+
+let gerador_matricula = 2;
 
 const aluno1 = {
-    matriucla: 1,
-    nome: "Filomeno",
-    notas: [8, 7, 6],
-}
-
+  matricula: 1,
+  nome: "Seu Zé",
+  notas: [8, 7, 6],
+};
 const aluno2 = {
-    matricula: 2,
-    nome: 'Azogado',
-    notas: [10, 5.5, 6]
-}
-const alunos = [aluno1, aluno2]
+  matricula: 2,
+  nome: "Aroudo Ramalho",
+  notas: [10, 5.5, 6],
+};
 
-console.log('=== CADASTRO DE ALUNOS ===')
-console.log('========== MENU ==========')
-console.log('0 - Sair do sistema')
-console.log('1 -Listar todos os alunos')
-console.log('============================')
-console.log('2 - Cadastrar um novo Aluno')
-console.log('3 - Buscar Aluno');
-console.log('4 - Alterar um Aluno')
-console.log('============================')
-let loop = true
-
-
+const alunos = [aluno1, aluno2];
+let loop = true;
+let matriculaBusca;
 
 while (loop) {
-    let opcao = readline.questionInt('Escolha uma opção: ')
-    switch (opcao) {
-        case 1:
-            console.log('Listando todos os alunos');
-            console.log('------------------------')
-            for (const a of alunos) {
-                console.log(`Nome: ${a.nome}`);
-                for (let i = 0; i < a.notas.length; i++) {
-                    console.log(`\t- Nota ${i + 1}: ${a.notas[i]}`);
-                }
-            }
-            break;
-        case 3:
-            
-
-        case 0:
-            console.log('Saindo do sistema e Calculando média.');
-            loop = false
-            break
-
-
-
-        default:
-            console.log('Opção invalida!');
-
-            break;
-    }
-
-}
-
- let media = 0
-for (let i = 0; i < alunos[0].notas.length; i++) {
-    console.log(alunos[0].notas[i])
-    media += alunos[0].notas[i]
-}
-media /= alunos[0].notas.length
-
-console.log(`A media é: ${media}`);
-
-let media1 = 0
-for (let i = 0; i < alunos[1].notas.length; i++) {
-    console.log(alunos[1].notas[i])
-    media1 += alunos[1].notas[i]
-}
-media1 /= alunos[1].notas.length
-console.log(`A media é: ${media1}`);
-
-if (media >= 7) {
-    console.log(`Aprovado ${alunos[0].nome}!`);
-} else {
-    console.log(`Reprovado ${alunos[0].nome}!`);
-}
-
-if (media1 >= 7) {
-    console.log(`Aprovado ${alunos[1].nome}!`);
-} else {
-    console.log(`Reprovado ${alunos[1].nome}!`)
+  console.clear();
+  console.log("=== CADASTRO DE ALUNOS ===");
+  console.log("========== MENU ==========");
+  console.log("0 - Sair do sistema");
+  console.log("1 - Listar todos o alunos");
+  console.log("2 - Cadastrar um novo aluno");
+  console.log("3 - Buscar um aluno");
+  console.log("4 - Alterar um aluno");
+  console.log("5 - Remover um aluno");
+  console.log("==========================");
+  let opcao = readline.questionInt("Escolha uma opcao: ");
+  switch (opcao) {
+    case 1:
+      console.log("Listando todos os alunos");
+      console.log("------------------------");
+      for (const a of alunos) {
+        let soma = 0;
+        console.log(`Matricula: ${a.matricula}`);
+        console.log(`Nome: ${a.nome}`);
+        for (let i = 0; i < a.notas.length; i++) {
+          console.log(`\t- Nota ${i + 1}: ${a.notas[i]}`);
+          soma += a.notas[i];
+        }
+        let media = soma / a.notas.length;
+        console.log(`\t- Média : ${media}`);
+      }
+      console.log("------------------------");
+      readline.keyInPause();
+      break;
+    case 2:
+      let nomeAluno = readline.question("Digite o nome do aluno:");
+      let notasAluno = [];
+      for (let i = 0; i < 3; i++) {
+        notasAluno[i] = readline.questionFloat(`Digite a nota ${i + 1}: `);
+      }
+      gerador_matricula++;
+      const aluno = {
+        matricula: gerador_matricula,
+        nome: nomeAluno,
+        notas: notasAluno,
+      };
+      alunos.push(aluno);
+      console.log("Aluno cadastrado com sucesso!");
+      readline.keyInPause();
+      break;
+    case 3:
+      matriculaBusca = readline.questionInt(
+        "Matricula do aluno que deseja buscar: "
+      );
+      for (const a of alunos) {
+        if (a.matricula === matriculaBusca) {
+          console.log("Resultado da busca");
+          console.log("------------------------");
+          console.log(`Matricula: ${a.matricula}`);
+          console.log(`Nome: ${a.nome}`);
+          for (let i = 0; i < a.notas.length; i++) {
+            console.log(`\t- Nota ${i + 1}: ${a.notas[i]}`);
+          }
+        }
+      }
+      readline.keyInPause();
+      break;
+    case 4:
+      matriculaBusca = readline.questionInt(
+        "Matricula do aluno que deseja alterar: "
+      );
+      for (const a of alunos) {
+        if (a.matricula === matriculaBusca) {
+          console.log(a.nome);
+          a.nome = readline.question("Digite o nome do aluno:");
+          for (let i = 0; i < a.notas.length; i++) {
+            a.notas[i] = readline.questionFloat(`Digite a nota ${i + 1}: `);
+          }
+        }
+      }
+      console.log("Aluno alterado com sucesso!");
+      readline.keyInPause();
+      break;
+    case 5:
+      matriculaBusca = readline.questionInt(
+        "Matricula do aluno que deseja alterar: "
+      );
+      for (const a of alunos) {
+        if (a.matricula === matriculaBusca) {
+          console.log(a.nome);
+          console.log(`Excluido aluno ${a.nome} do sistema..."`);
+          alunos.splice(a, 1);
+        }
+      }
+      console.log("Aluno excluído com sucesso!");
+      readline.keyInPause();
+      break;
+    case 0:
+      console.log("Saindo do sistema...");
+      loop = false;
+      break;
+    default:
+      console.log("Opção invalida!");
+      break;
+  }
 }
